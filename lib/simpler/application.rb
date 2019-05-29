@@ -61,9 +61,9 @@ module Simpler
 
     def page_not_found
       [
-          404,
-          { 'Content-Type' => 'text/plain' },
-          ['Error 404. Page Not Found']
+        404,
+        { 'Content-Type' => 'text/plain' },
+        ['Error 404. Page Not Found']
       ]
     end
 
