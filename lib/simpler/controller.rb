@@ -47,21 +47,9 @@ module Simpler
     end
 
     def render(template)
-      if template[:plain]
-        plain(template[:plain])
-      elsif template[:inline]
-        inline(template[:inline])
-      else
-        @request.env['simpler.template'] = template
-      end
-    end
+      @request.env['simpler.template'] = template
 
-    def plain(body)
-      @response.write(body)
-    end
-
-    def inline(body)
-      @response.write(ERB.new(body).result(binding))
+      View.new(@request.env).render(binding)
     end
 
     def set_status(status)
