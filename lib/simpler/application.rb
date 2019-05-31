@@ -60,7 +60,7 @@ module Simpler
     end
 
     def page_not_found
-      Rack::Response.new('Error 404. Page Not Found', 404).finish
+      Rack::Response.new(['Error 404. Page Not Found'], 404, { 'Content-Type' => 'text/plain' }).finish
     end
   end
 end

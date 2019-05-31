@@ -1,11 +1,12 @@
-require_relative 'view/inline'
+require_relative 'view/html'
 require_relative 'view/plain'
 
 module Simpler
   class View
 
-    RENDER = {'text/inline' => Inline, 'text/plain' => Plain}.freeze
+    RENDER = {'text/html' => Html, 'text/plain' => Plain}.freeze
     VIEW_BASE_PATH = 'app/views'.freeze
+    DEFAULT = 'text/html'.freeze
 
     def initialize(env)
       @env = env
@@ -19,7 +20,7 @@ module Simpler
     private
 
     def content_type
-      @env['simpler.content_type']
+      @env['simpler.content_type'] ||= DEFAULT
     end
   end
 end

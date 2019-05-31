@@ -2,7 +2,7 @@ require 'erb'
 
 module Simpler
   class View
-    class Inline
+    class Html
 
       VIEW_BASE_PATH = 'app/views'.freeze
 
