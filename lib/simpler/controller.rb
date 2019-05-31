@@ -33,9 +33,9 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+        body = render_body
 
-      @response.write(body)
+        @response.write(body)
     end
 
     def render_body
@@ -43,12 +43,21 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
     def render(template)
       @request.env['simpler.template'] = template
+
+      View.new(@request.env).render(binding)
     end
 
+    def set_status(status)
+      @response.status = status
+    end
+
+    def set_headers(title, value)
+      @response["#{title}"] = "#{value}"
+    end
   end
 end
